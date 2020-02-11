@@ -7,8 +7,8 @@ import Vapor
 final class UserToken: SQLiteModel {
 	/// Creates a new `UserToken` for a given user.
 	static func create(userID: User.ID) throws -> UserToken {
-		// generate a random 128-bit, base64-encoded string.
-		let string = try CryptoRandom().generateData(count: 16).base64EncodedString()
+		// generate a random 256-bit, base64-encoded string.
+		let string = try CryptoRandom().generateData(count: 32).base64EncodedString()
 		// init a new `UserToken` from that string.
 		return .init(token: string, userID: userID)
 	}
